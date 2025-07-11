@@ -1,0 +1,21 @@
+body {
+  font-family: Arial, sans-serif;
+  min-width: 250px;
+  padding: 20px;
+}
+h1 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+select {
+  width: 100%;
+  margin-bottom: 10px;
+}
+#status {
+  color: green;
+  margin-top: 10px;
+} 

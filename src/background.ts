@@ -1,0 +1,1 @@
+console.log('SpeakFree background script running'); 

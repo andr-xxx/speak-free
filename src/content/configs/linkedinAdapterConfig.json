@@ -1,0 +1,7 @@
+{
+  "messageSelector": ".msg-s-event-listitem__body",
+  "inputSelector": ".msg-form__contenteditable[contenteditable=\"true\"][role=\"textbox\"]",
+  "sendButtonSelector": "button.msg-form__send-button[type=\"submit\"]",
+  "messageContainerSelector": ".msg-s-message-list-content",
+  "chatContainerSelector": ".msg-s-message-list-content"
+} 

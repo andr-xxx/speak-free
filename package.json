@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "@types/chrome": "^0.0.328",
+    "dotenv-cli": "^8.0.0",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "scripts": {
+    "build": "./build.sh"
+  }
+}

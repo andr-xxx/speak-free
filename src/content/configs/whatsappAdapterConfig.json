@@ -1,0 +1,11 @@
+{
+  "messageSelector": ".copyable-text .selectable-text",
+  "inputSelector": "footer div[contenteditable=\"true\"][role=\"textbox\"][data-lexical-editor=\"true\"]",
+  "sendButtonSelector": "footer button[aria-label='Send'], footer button[data-icon='wds-ic-send-filled'], footer button span[data-icon='wds-ic-send-filled']",
+  "messageContainerSelector": "div[role=\"application\"]",
+  "chatContainerSelector": [
+    "[data-testid=\"conversation-panel-messages\"]",
+    "[aria-label=\"Message list\"]",
+    "div[role=\"application\"]"
+  ]
+} 

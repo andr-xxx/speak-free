@@ -1,0 +1,1 @@
+console.log('SpeakFree popup opened'); 

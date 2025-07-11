@@ -1,0 +1,12 @@
+body {
+  font-family: Arial, sans-serif;
+  min-width: 200px;
+  padding: 10px;
+}
+h1 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+#popup-content {
+  color: #555;
+} 
