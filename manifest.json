@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "SpeakFree Translator",
+  "version": "0.1.0",
+  "description": "Live translation for web chats and social media.",
+  "icons": {
+    "16": "assets/icon.png",
+    "48": "assets/icon.png",
+    "128": "assets/icon.png"
+  },
+  "permissions": [
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*",
+    "https://www.linkedin.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "options_page": "settings/settings.html",
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content/contentScript.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "js": ["content/contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content/tooltip.css",
+        "content/confirmPopup.css"
+      ],
+      "matches": [
+        "https://web.whatsapp.com/*",
+        "https://www.linkedin.com/*"
+      ]
+    }
+  ]
+} 
