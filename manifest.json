@@ -38,8 +38,9 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "content/tooltip.css",
-        "content/confirmPopup.css"
+        "content/ui/tooltip.css",
+        "content/ui/confirmPopup.css",
+        "content/ui/toggle.css"
       ],
       "matches": [
         "https://web.whatsapp.com/*",

@@ -6,6 +6,7 @@ import { showConfirmPopup } from './ui/confirmPopup';
 import { injectContentStyles } from './utils/uiInjector';
 import { watchChatContainer } from './chatContainerWatcher';
 import { createMessageManager } from './messageManager';
+import { createToggleManager } from './ui/toggleManager';
 import { delay } from './utils/utils';
 
 import type { Adapter } from './adapters/adapterConfig';
@@ -27,6 +28,15 @@ import type { Adapter } from './adapters/adapterConfig';
   const messageManager = createMessageManager(adapter, TranslationService);
   let messageObserver: MutationObserver | null = null;
   let messageUpdateTimeout: ReturnType<typeof setTimeout> | null = null;
+  
+  // Create toggle manager
+  const toggleManager = createToggleManager({
+    getInput: () => adapter.getInput(),
+    enabled: false,
+    onToggle: (enabled) => {
+      console.log('Interceptors enabled:', enabled);
+    }
+  });
 
   function setupMessageObserver() {
     if (messageObserver) {
@@ -54,6 +64,9 @@ import type { Adapter } from './adapters/adapterConfig';
     console.log('new chat received');
     messageManager.clear();
     setupMessageObserver();
+
+    // Create toggle for new chat
+    toggleManager.create();
 
     delay(500);
     // Get up to 10 last messages for language detection

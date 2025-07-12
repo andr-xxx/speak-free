@@ -83,6 +83,7 @@ export abstract class BaseAdapter<T extends AdapterConfig = AdapterConfig> {
     let lastInput: InterceptableElement | null = null;
     let lastSendButton: InterceptableElement | null = null;
     let skipNextInterception = false;
+    let interceptorsEnabled = false;
 
     const handleOutgoing = async (input: InterceptableElement) => {
       const original = this.getInputText(input).trim();
@@ -101,6 +102,18 @@ export abstract class BaseAdapter<T extends AdapterConfig = AdapterConfig> {
       }
     };
 
+    // Load initial state
+    chrome.storage.local.get('interceptorsEnabled', (result) => {
+      interceptorsEnabled = result.interceptorsEnabled ?? false;
+    });
+
+    // Listen for state changes
+    chrome.storage.onChanged.addListener((changes) => {
+      if (changes.interceptorsEnabled) {
+        interceptorsEnabled = changes.interceptorsEnabled.newValue ?? false;
+      }
+    });
+
     setInterval(() => {
       const input = this.getInput() as InterceptableElement | null;
       const sendButton = this.getSendButton() as InterceptableElement | null;
@@ -110,6 +123,8 @@ export abstract class BaseAdapter<T extends AdapterConfig = AdapterConfig> {
       lastSendButton = sendButton;
       if (input && !input._speakfree_intercept) {
         input.addEventListener('keydown', async (e: KeyboardEvent) => {
+          if (!interceptorsEnabled) return;
+
           if (skipNextInterception) {
             skipNextInterception = false;
             return;
@@ -125,6 +140,8 @@ export abstract class BaseAdapter<T extends AdapterConfig = AdapterConfig> {
       }
       if (sendButton && !sendButton._speakfree_intercept) {
         sendButton.addEventListener('click', async (e) => {
+          if (!interceptorsEnabled) return;
+          
           if (skipNextInterception) {
             skipNextInterception = false;
             return;
