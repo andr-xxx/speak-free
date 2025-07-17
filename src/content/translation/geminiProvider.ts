@@ -16,7 +16,7 @@ function extractJsonFromResponse(content: string): string {
 
 export const geminiProvider: TranslationProvider = {
   async translate(text: string, targetLang: string) {
-    const prompt = `Translate the following text to ${targetLang} (only return the translation, no explanation):\n"""${text}"""`;
+    const prompt = `Translate the following text to ${targetLang} (only return the translation in ${targetLang}, do not include or repeat the original text, no explanation, and preserve the text formatting if possible). Return only the translation, without any extra quotes, code blocks, or formatting wrappers:\n${text}`;
     const body = {
       contents: [
         { parts: [{ text: prompt }] }
@@ -39,7 +39,7 @@ export const geminiProvider: TranslationProvider = {
   },
 
   async translateBatch(messages: string[], targetLang: string) {
-    const prompt = `You are translating a conversation between people. Each item in the array is a separate message. Please translate each message naturally to ${targetLang}, preserving the conversational flow. Also, detect and return the main language used in the conversation.\n\nMessages:\n${JSON.stringify(messages)}\n\nReturn a JSON object with keys 'translations' (an array of translated messages) and 'mainLanguage' (the detected language).`;
+    const prompt = `You are translating a conversation between people. Each item in the array is a separate message. Please translate each message naturally to ${targetLang}, preserving the conversational flow. Also, detect and return the main language used in the conversation. IMPORTANT: Preserve the text formatting of each message if possible.\n\nMessages:\n${JSON.stringify(messages)}\n\nReturn a JSON object with keys 'translations' (an array of translated messages) and 'mainLanguage' (the detected language).`;
     const body = {
       contents: [
         { parts: [{ text: prompt }] }
@@ -96,7 +96,7 @@ export const geminiProvider: TranslationProvider = {
   async translateWithContext(target: string, context: string[], targetLang: string) {
     const before = context.slice(0, 4).join('\n');
     const after = context.slice(4).join('\n');
-    const prompt = `You are translating a chat message with context.\nHere are the previous messages:\n${before}\nHere is the message to translate:\n"${target}"\nHere are the following messages:\n${after}\nTranslate ONLY the message in quotes to ${targetLang}. Return only the translation.`;
+    const prompt = `You are translating a chat message with context.\nHere are the previous messages:\n${before}\nHere is the message to translate:\n"${target}"\nHere are the following messages:\n${after}\nTranslate ONLY the message in quotes to ${targetLang}. Return only the translation. IMPORTANT: Preserve the text formatting of the message if possible.`;
     const body = {
       contents: [
         { parts: [{ text: prompt }] }

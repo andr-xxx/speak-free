@@ -12,10 +12,6 @@ class LinkedInAdapter extends BaseAdapter<AdapterConfig> {
     tempDiv.innerHTML = html;
     return tempDiv.textContent?.trim() || '';
   }
-
-  getInputText(input: HTMLElement): string {
-    return input ? input.textContent || '' : '';
-  }
 }
 
 export function getLinkedInAdapter(): Promise<LinkedInAdapter> {

@@ -1,4 +1,5 @@
-import type { Adapter, AdapterConfig } from './adapterConfig';
+import { delay } from '../utils/utils';
+import type { AdapterConfig } from './adapterConfig';
 
 export abstract class BaseAdapter<T extends AdapterConfig = AdapterConfig> {
   readonly messageSelector: string;
@@ -96,9 +97,15 @@ export abstract class BaseAdapter<T extends AdapterConfig = AdapterConfig> {
         skipNextInterception = true;
         await this.setInputText(edited);
         setTimeout(() => {
+          if (this.getInputText(input).trim() === original) {
+            console.log('Input text is the same as original, skipping');
+            skipNextInterception = false;
+            return;
+          }
+
           const sendButton = this.getSendButton();
           if (sendButton) (sendButton as HTMLButtonElement).click();
-        }, 100);
+        }, 300);
       }
     };
 
@@ -159,14 +166,30 @@ export abstract class BaseAdapter<T extends AdapterConfig = AdapterConfig> {
   async setInputText(text: string): Promise<void> {
     const input = this.getInput();
     if (!input) return;
-    input.focus();
-    await (typeof window !== 'undefined' && 'requestAnimationFrame' in window ? new Promise(r => requestAnimationFrame(r)) : Promise.resolve());
+    input.focus();  
+
+    await delay(10);    
     document.execCommand('selectAll', true);
-    await (typeof window !== 'undefined' && 'requestAnimationFrame' in window ? new Promise(r => requestAnimationFrame(r)) : Promise.resolve());
-    document.execCommand('insertText', true, text);
+    await delay(10);
+    document.execCommand('insertText', false, ' ');
+    await delay(10);
+    document.execCommand('selectAll', true);
+    await delay(10);
+    document.execCommand('insertHTML', false, text);
     input.blur();
   }
 
+  getInputText(input: HTMLElement): string {
+    let text = '';
+    input?.childNodes.forEach((node) => {
+      if (node.nodeName === 'P') {
+        text += (node as HTMLElement).innerText + '\n';
+      } else if (node.nodeType === Node.TEXT_NODE) {
+        text += node.textContent + '\n';
+      }
+    });
+    return text;
+  }
+
   abstract extractMessageText(element: HTMLElement): string;
-  abstract getInputText(input: HTMLElement): string;
-} 
+}

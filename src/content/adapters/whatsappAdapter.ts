@@ -8,18 +8,6 @@ class WhatsAppAdapter extends BaseAdapter<AdapterConfig> {
   extractMessageText(element: HTMLElement): string {
     return element.textContent?.trim() || '';
   }
-
-  getInputText(input: HTMLElement): string {
-    let text = '';
-    input?.childNodes.forEach((node) => {
-      if (node.nodeName === 'P') {
-        text += (node as HTMLElement).innerText + '\n';
-      } else if (node.nodeType === Node.TEXT_NODE) {
-        text += node.textContent + '\n';
-      }
-    });
-    return text;
-  }
 }
 
 export function getWhatsAppAdapter(): Promise<WhatsAppAdapter> {
