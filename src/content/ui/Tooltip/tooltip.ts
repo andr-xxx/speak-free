@@ -1,4 +1,4 @@
-import { formatMessageHTML } from '../utils/utils';
+import { formatMessageHTML } from '../../utils/utils';
 
 export let tooltip: HTMLDivElement | null = null;
 

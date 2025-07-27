@@ -1,12 +1,12 @@
 import { getWhatsAppAdapter } from './adapters/whatsappAdapter';
 import { getLinkedInAdapter } from './adapters/linkedinAdapter';
-import { showTooltip, hideTooltip } from './ui/tooltip';
+import { showTooltip, hideTooltip } from './ui/Tooltip/tooltip';
 import { TranslationService } from './translation/translationService';
-import { showConfirmPopup } from './ui/confirmPopup';
+import { showConfirmPopup } from './ui/ConfirmPopup/confirmPopup';
 import { injectContentStyles } from './utils/uiInjector';
 import { watchChatContainer } from './chatContainerWatcher';
 import { createMessageManager } from './messageManager';
-import { createToggleManager } from './ui/toggleManager';
+import { createToggleManager } from './ui/Toggle/toggleManager';
 import { delay } from './utils/utils';
 
 import type { Adapter } from './adapters/adapterConfig';

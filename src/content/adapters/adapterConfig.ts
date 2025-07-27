@@ -15,7 +15,7 @@ export type Adapter<T extends AdapterConfig = AdapterConfig> = T & {
   sendMessage(): void;
   attachOutgoingMessageInterceptor(services: {
     TranslationService: typeof import('../translation/translationService').TranslationService,
-    showConfirmPopup: typeof import('../ui/confirmPopup').showConfirmPopup
+    showConfirmPopup: typeof import('../ui/ConfirmPopup/confirmPopup').showConfirmPopup
   }): void;
   getChatContainer(): HTMLElement | null;
   extractMessageText(element: HTMLElement): string;

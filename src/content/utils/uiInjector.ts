@@ -8,7 +8,7 @@ export function injectContentStyles() {
     if (id) link.id = id;
     document.head.appendChild(link);
   }
-  injectContentStyle('content/ui/tooltip.css', 'speakfree-tooltip-style');
-  injectContentStyle('content/ui/confirmPopup.css', 'speakfree-confirm-popup-style');
-  injectContentStyle('content/ui/toggle.css', 'speakfree-toggle-style');
+  injectContentStyle('content/ui/Tooltip/tooltip.css', 'speakfree-tooltip-style');
+  injectContentStyle('content/ui/ConfirmPopup/confirmPopup.css', 'speakfree-confirm-popup-style');
+  injectContentStyle('content/ui/Toggle/toggle.css', 'speakfree-toggle-style');
 } 
