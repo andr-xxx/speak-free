@@ -6,7 +6,7 @@ import { showConfirmPopup } from './ui/ConfirmPopup/confirmPopup';
 import { injectContentStyles } from './utils/uiInjector';
 import { watchChatContainer } from './chatContainerWatcher';
 import { createMessageManager } from './messageManager';
-import { createToggleManager } from './ui/Toggle/toggleManager';
+import { createDotIndicatorManager } from './ui/DotIndicator/dotIndicatorManager';
 import { delay } from './utils/utils';
 
 import type { Adapter } from './adapters/adapterConfig';
@@ -29,12 +29,15 @@ import type { Adapter } from './adapters/adapterConfig';
   let messageObserver: MutationObserver | null = null;
   let messageUpdateTimeout: ReturnType<typeof setTimeout> | null = null;
   
-  // Create toggle manager
-  const toggleManager = createToggleManager({
+  // Create dot indicator manager
+  const dotIndicatorManager = createDotIndicatorManager({
     getInput: () => adapter.getInput(),
     enabled: false,
     onToggle: (enabled) => {
       console.log('Interceptors enabled:', enabled);
+    },
+    onLanguageChange: (language) => {
+      console.log('Target language changed to:', language);
     }
   });
 
@@ -65,8 +68,8 @@ import type { Adapter } from './adapters/adapterConfig';
     messageManager.clear();
     setupMessageObserver();
 
-    // Create toggle for new chat
-    toggleManager.create();
+    // Create dot indicator for new chat
+    dotIndicatorManager.create();
 
     delay(500);
     // Get up to 10 last messages for language detection

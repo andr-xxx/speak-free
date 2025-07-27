@@ -9,6 +9,6 @@ cp manifest.json dist/manifest.json
 cp -R assets dist/
 cp src/content/ui/Tooltip/tooltip.css dist/content/ui/Tooltip/tooltip.css
 cp src/content/ui/ConfirmPopup/confirmPopup.css dist/content/ui/ConfirmPopup/confirmPopup.css
-cp src/content/ui/Toggle/toggle.css dist/content/ui/Toggle/toggle.css
+cp src/content/ui/DotIndicator/dotIndicator.css dist/content/ui/DotIndicator/dotIndicator.css
 # Remove 'export {}' lines from compiled content scripts
 find dist/content -name '*.js' -exec sed -i '' '/^export {.*};*$/d' {} + 

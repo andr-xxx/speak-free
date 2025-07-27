@@ -48,6 +48,13 @@ npx esbuild src/content/contentScript.ts \
   --define:OPENAI_API_KEY='"'$OPENAI_API_KEY'"' \
   --define:GEMINI_API_KEY='"'$GEMINI_API_KEY'"'
 
+# Bundle settings page script with esbuild
+npx esbuild src/settings/settings.ts \
+  --bundle \
+  --outfile=dist/settings/settings.js \
+  --format=iife \
+  --platform=browser
+
 # Copy static files and assets
 echo "[Build] Copying static files and assets..."
 ./copy-static-files.sh

@@ -40,7 +40,7 @@
       "resources": [
         "content/ui/Tooltip/tooltip.css",
         "content/ui/ConfirmPopup/confirmPopup.css",
-        "content/ui/Toggle/toggle.css"
+        "content/ui/DotIndicator/dotIndicator.css"
       ],
       "matches": [
         "https://web.whatsapp.com/*",

@@ -10,5 +10,5 @@ export function injectContentStyles() {
   }
   injectContentStyle('content/ui/Tooltip/tooltip.css', 'speakfree-tooltip-style');
   injectContentStyle('content/ui/ConfirmPopup/confirmPopup.css', 'speakfree-confirm-popup-style');
-  injectContentStyle('content/ui/Toggle/toggle.css', 'speakfree-toggle-style');
+  injectContentStyle('content/ui/DotIndicator/dotIndicator.css', 'speakfree-dot-indicator-style');
 } 
